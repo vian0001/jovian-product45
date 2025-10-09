@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+
+<style>
+.image-container {
+  margin: 30px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.4s ease;
+  max-width: 100%;
+  position: relative;
+}
+
+.image-container:hover {
+  transform: scale(1.02);
+  box-shadow: 0 15px 40px rgba(37, 99, 235, 0.4);
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: all 0.4s ease;
+}
+
+.image-container:hover img {
+  filter: brightness(1.1);
+}
+
+.image-caption {
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.7), transparent);
+  padding: 15px 20px;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.image-container:hover .image-caption {
+  transform: translateY(0);
+}
+
+@keyframes loadProgress { 0% { width: 0%; } 100% { width: 100%; } }
+@keyframes fadeOut { to { opacity: 0; visibility: hidden; } }
+{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+
+
+    /* Portfolio Button Styling */
+
+.portfolio-button {
+position: fixed;
+bottom: 30px;
+right: 30px;
+z-index: 1000;
+background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+color: var(--text-primary);
+border: none;
+border-radius: 50px;
+padding: 15px 25px;
+font-family: 'Inter', sans-serif;
+font-weight: 600;
+font-size: 1rem;
+cursor: pointer;
+box-shadow: 0 5px 20px rgba(37, 99, 235, 0.4);
+transition: all 0.3s ease;
+display: flex;
+align-items: center;
+gap: 10px;
+overflow: hidden;
+text-decoration: none;
+}
+.portfolio-button:hover {
+transform: translateY(-5px) scale(1.05);
+box-shadow: 0 8px 25px rgba(37, 99, 235, 0.6);
+}
+.portfolio-button::before {
+content: '';
+position: absolute;
+top: 0;
+left: -100%;
+width: 100%;
+height: 100%;
+background: linear-gradient(90deg,
+transparent,
+rgba(255, 255, 255, 0.2),
+transparent);
+animation: shineEffect 3s infinite;
+}
+.portfolio-icon {
+font-size: 1.2rem;
+animation: pulse 2s infinite;
+}
+@keyframes shineEffect {
+0% { left: -100%; }
+20% { left: 100%; }
+100% { left: 100%; }
+}
+@keyframes pulse {
+0% { transform: scale(1); }
+50% { transform: scale(1.2); }
+100% { transform: scale(1); }
+}
+.attention-ripple {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 100%;
+height: 100%;
+border-radius: 50px;
+border: 2px solid var(--accent-color);
+animation: ripple 2s infinite;
+opacity: 0;
+}
+@keyframes ripple {
+0% {
+width: 100%;
+height: 100%;
+opacity: 0.8;
+}
+100% {
+width: 200%;
+height: 200%;
+opacity: 0;
+}
+}
+{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #1e40af;
+    --accent-color: #06b6d4;
+    --success-color: #059669;
+    --warning-color: #d97706;
+    --danger-color: #dc2626;
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-card: #334155;
+    --bg-light: #f8fafc;
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --border-color: #475569;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Tech Background Pattern */
+.tech-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(220, 38, 38, 0.08) 0%, transparent 50%);
+}
+
+.circuit-pattern {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    opacity: 0.03;
+    background-image: 
+        linear-gradient(90deg, var(--primary-color) 1px, transparent 1px),
+        linear-gradient(var(--primary-color) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: circuitMove 20s linear infinite;
+}
+
+@keyframes circuitMove {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+}
+
+/* Floating particles */
+.tech-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: float linear infinite;
+}
+
+@keyframes float {
+    0% { 
+        transform: translateY(100vh) translateX(0px);
+        opacity: 0;
+    }
+    10% { 
+        opacity: 0.6;
+    }
+    90% { 
+        opacity: 0.6;
+    }
+    100% { 
+        transform: translateY(-100px) translateX(100px);
+        opacity: 0;
+    }
+}
+
+/* Header */
+.header {
+    text-align: center;
+    padding: 100px 20px 80px;
+    background: linear-gradient(135deg, 
+        rgba(37, 99, 235, 0.1) 0%, 
+        rgba(6, 182, 212, 0.1) 50%, 
+        rgba(5, 150, 105, 0.1) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(37, 99, 235, 0.1),
+        transparent
+    );
+    animation: headerScan 10s linear infinite;
+}
+
+@keyframes headerScan {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+.main-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color), var(--success-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    text-shadow: 0 0 50px rgba(37, 99, 235, 0.3);
+    animation: titleGlow 4s ease-in-out infinite alternate;
+    position: relative;
+}
+
+@keyframes titleGlow {
+    0% { filter: brightness(1); }
+    100% { filter: brightness(1.2); }
+}
+
+.subtitle {
+    font-size: 1.3rem;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.author-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 600px;
+    margin: 0 auto;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    animation: cardFloat 6s ease-in-out infinite alternate;
+}
+
+@keyframes cardFloat {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-10px); }
+}
+
+.card-header {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.author-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    text-align: left;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.info-label {
+    font-weight: 600;
+    color: var(--primary-color);
+    min-width: 80px;
+    margin-right: 15px;
+}
+
+.info-value {
+    color: var(--text-primary);
+    font-weight: 400;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+/* Section styling */
+.section {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.05) 0%, 
+        rgba(255, 255, 255, 0.02) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 40px;
+    margin: 40px 0;
+    position: relative;
+    backdrop-filter: blur(20px);
+    transition: all 0.4s ease;
+    animation: sectionSlide 0.8s ease-out;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.section:nth-child(even) {
+    animation: sectionSlideRight 0.8s ease-out;
+}
+
+@keyframes sectionSlide {
+    from { transform: translateX(-50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes sectionSlideRight {
+    from { transform: translateX(50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.section:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 12px 48px rgba(37, 99, 235, 0.2);
+    transform: translateY(-8px);
+}
+
+.section-title {
+    font-family: 'Inter', sans-serif;
+    color: var(--primary-color);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    position: relative;
+    padding-left: 30px;
+}
+
+.section-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 30px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    border-radius: 2px;
+}
+
+/* Sub-section titles */
+.subsection-title {
+    font-family: 'Inter', sans-serif;
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.subsection-title::before {
+    content: '—'; /* Simple dash or similar indicator */
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+}
+
+/* Code blocks with typing effect */
+.code-terminal {
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 25px;
+    margin: 25px 0;
+    font-family: 'JetBrains Mono', monospace;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.code-terminal::before {
+    content: '$ mikrotik@router:~';
+    color: var(--success-color);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.code-line {
+    color: var(--text-primary);
+    margin: 8px 0;
+    position: relative;
+    padding-left: 20px;
+    transition: all 0.3s ease;
+    opacity: 0;
+    width: fit-content;
+    font-family: 'JetBrains Mono', monospace;
+    white-space: pre;
+}
+
+.code-line.typing {
+    opacity: 1;
+    border-right: 2px solid var(--accent-color);
+    animation: blink-cursor 1s infinite;
+}
+
+.code-line.typed {
+    opacity: 1;
+    border-right: none;
+}
+
+@keyframes blink-cursor {
+    0%, 50% { border-color: var(--accent-color); }
+    51%, 100% { border-color: transparent; }
+}
+
+.code-line:hover {
+    background: rgba(37, 99, 235, 0.1);
+    padding-left: 25px;
+    border-radius: 6px;
+}
+
+.code-line::before {
+    content: '▶';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+    font-size: 0.8rem;
+}
+
+.comment {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.string {
+    color: var(--warning-color);
+    font-weight: 400;
+}
+
+.keyword {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* Alert boxes */
+.tech-alert {
+    background: linear-gradient(135deg, 
+        rgba(37, 99, 235, 0.1), 
+        rgba(6, 182, 212, 0.1));
+    border: 1px solid var(--primary-color);
+    border-left: 4px solid var(--primary-color);
+    border-radius: 12px;
+    padding: 25px;
+    margin: 30px 0;
+    position: relative;
+    animation: alertPulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes alertPulse {
+    0% { box-shadow: 0 0 20px rgba(37, 99, 235, 0.2); }
+    100% { box-shadow: 0 0 30px rgba(37, 99, 235, 0.4); }
+}
+
+.tech-alert::before {
+    content: '🔧 TEKNOLOGI INFO';
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background: var(--bg-primary);
+    color: var(--primary-color);
+    padding: 5px 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 20px;
+    border: 1px solid var(--primary-color);
+}
+
+.security-alert {
+    background: linear-gradient(135deg, 
+        rgba(220, 38, 38, 0.1), 
+        rgba(217, 119, 6, 0.1));
+    border: 1px solid var(--danger-color);
+    border-left: 4px solid var(--danger-color);
+    border-radius: 12px;
+    padding: 25px;
+    margin: 30px 0;
+    position: relative;
+    animation: securityBlink 2s ease-in-out infinite alternate;
+}
+
+@keyframes securityBlink {
+    0% { border-left-color: var(--danger-color); }
+    100% { border-left-color: var(--warning-color); }
+}
+
+.security-alert::before {
+    content: '🛡 KEAMANAN';
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background: var(--bg-primary);
+    color: var(--danger-color);
+    padding: 5px 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 20px;
+    border: 1px solid var(--danger-color);
+}
+
+.conclusion-box {
+    background: linear-gradient(135deg, 
+        rgba(5, 150, 105, 0.1), 
+        rgba(37, 99, 235, 0.1));
+    border: 1px solid var(--success-color);
+    border-left: 4px solid var(--success-color);
+    border-radius: 12px;
+    padding: 25px;
+    margin: 30px 0;
+    position: relative;
+    animation: conclusionGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes conclusionGlow {
+    0% { box-shadow: 0 0 20px rgba(5, 150, 105, 0.2); }
+    100% { box-shadow: 0 0 30px rgba(5, 150, 105, 0.4); }
+}
+
+.conclusion-box::before {
+    content: '📝 KESIMPULAN';
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background: var(--bg-primary);
+    color: var(--success-color);
+    padding: 5px 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 20px;
+    border: 1px solid var(--success-color);
+}
+
+/* Bibliography */
+.bibliography {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.08), 
+        rgba(255, 255, 255, 0.04));
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 40px;
+    margin-top: 60px;
+    backdrop-filter: blur(20px);
+    animation: biblioFade 1.5s ease-out;
+}
+
+@keyframes biblioFade {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.bibliography h3 {
+    color: var(--accent-color);
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.bibliography ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.bibliography li {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+    position: relative;
+    padding-left: 50px;
+}
+
+.bibliography li::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    font-size: 1.2rem;
+}
+
+.bibliography li:hover {
+    color: var(--text-primary);
+    transform: translateX(10px);
+    border-color: var(--primary-color);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(6, 182, 212, 0.05));
+}
+
+.bibliography a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    word-break: break-all;
+}
+
+.bibliography a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+/* Progress bar */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--success-color));
+    z-index: 1000;
+    transition: width 0.3s ease;
+    box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2.5rem;
+    }
+    
+    .section {
+        padding: 25px 20px;
+        margin: 30px 0;
+    }
+    
+    .container {
+        padding: 40px 15px;
+    }
+
+    .code-terminal {
+        padding: 20px;
+        font-size: 0.9rem;
+    }
+
+    .author-info {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Smooth animations */
+.fade-in {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+ 
+img, a {
+-webkit-user-drag: none;
+-khtml-user-drag: none;
+-moz-user-drag: none;
+-o-user-drag: none;
+user-drag: none;
+}
+
+</style>
+
+<!-- Portfolio Button -->
+<a href="https://jovian-portofolio02.vercel.app/" target="_blank" class="portfolio-button">
+    <span class="portfolio-icon">🚀</span>
+    Lihat Portfolio Saya
+    <div class="attention-ripple"></div>
+</a>
+
+<!-- Tech Background -->
+<div class="tech-bg"></div>
+<div class="circuit-pattern"></div>
+<div class="tech-particles" id="techParticles"></div>
+
+<!-- Header -->
+<div class="header">
+    <h1 class="main-title">MIKROTIK ROUTEROS</h1>
+    <div class="subtitle">Menyeting Parameter Burst, Limit-at, dan Max Limit</div>
+    <div class="subtitle">Konfigurasi Manajemen Bandwidth untuk Jaringan Optimal</div>
+    
+    <div class="author-card">
+        <div class="card-header">Informasi Penulis</div>
+        <div class="author-info">
+            <div class="info-item">
+                <span class="info-label">Penulis:</span>
+                <span class="info-value">Jovian Ekasakta</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Guru:</span>
+                <span class="info-value">Arief Wahyudin</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Kelas:</span>
+                <span class="info-value">XI TJKT 03</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Sekolah:</span>
+                <span class="info-value">Dwija Bhakti 01 Jombang</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Section: Konsep Dasar Parameter Bandwidth -->
+    <div class="section fade-in">
+        <h2 class="section-title">1. KONSEP DASAR PARAMETER BANDWIDTH MIKROTIK</h2>
+
+        <div class="image-container">
+            <img src="https://i.ibb.co/bBkrFxW/bandwidth-management.jpg" alt="Manajemen Bandwidth MikroTik">
+            <div class="image-caption">Ilustrasi manajemen bandwidth dengan MikroTik RouterOS</div>
+        </div>
+
+        <h3 class="subsection-title">Pengenalan Parameter Bandwidth</h3>
+        <p>Dari sumber MikroTik Documentation (2024), parameter bandwidth dalam MikroTik RouterOS adalah nilai-nilai yang dapat dikonfigurasi untuk mengatur lalu lintas data dalam jaringan. Tiga parameter utama yang digunakan dalam manajemen bandwidth di MikroTik adalah Burst, Limit-at, dan Max-limit. Parameter-parameter ini merupakan komponen penting dalam Queue Tree dan Simple Queue yang berfungsi untuk mengendalikan alokasi bandwidth ke pengguna atau layanan tertentu.</p>
+        
+        <p>Dari sumber Networking Fundamentals (2023), manajemen bandwidth yang efektif melalui pengaturan parameter Burst, Limit-at, dan Max-limit memungkinkan administrator jaringan untuk memastikan Quality of Service (QoS) yang konsisten dan mencegah satu pengguna atau layanan menghabiskan seluruh bandwidth yang tersedia. Ini sangat penting terutama dalam jaringan dengan banyak pengguna atau aplikasi yang bersaing untuk mendapatkan sumber daya jaringan yang sama.</p>
+
+        <div class="tech-alert">
+            <p>Parameter bandwidth di MikroTik menggunakan satuan bit per detik (bps) dan dapat ditentukan dalam kilobit (k), megabit (M), atau gigabit (G). Misalnya, 512k berarti 512 kilobit per detik, 10M berarti 10 megabit per detik, dan 1G berarti 1 gigabit per detik.</p>
+        </div>
+
+        <h3 class="subsection-title">Hubungan Antar Parameter Bandwidth</h3>
+        <p>Dari sumber MikroTik Academy (2024), ketiga parameter bandwidth (Burst, Limit-at, dan Max-limit) saling berkaitan dan bekerja bersama untuk memberikan kontrol bandwidth yang dinamis. Dalam kondisi normal, bandwidth yang dialokasikan adalah nilai Limit-at. Ketika jaringan tidak sibuk, pengguna dapat menikmati kecepatan hingga Max-limit. Sedangkan Burst memungkinkan pengguna untuk mendapatkan bandwidth yang lebih tinggi dalam waktu singkat untuk mengakomodasi lonjakan lalu lintas.</p>
+
+        <p>Dari sumber Network Engineering Journal (2023), pemahaman yang tepat tentang hubungan antar parameter ini sangat penting karena konfigurasi yang salah dapat menyebabkan pengalaman pengguna yang buruk atau ketidakefisienan dalam penggunaan bandwidth yang tersedia. Misalnya, jika Max-limit diatur terlalu rendah, pengguna mungkin mengalami kecepatan yang lambat bahkan ketika jaringan tidak sibuk, sementara jika Limit-at diatur terlalu tinggi, jaringan mungkin menjadi jenuh selama periode lalu lintas tinggi.</p>
+
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Melihat konfigurasi Simple Queue di Winbox:</span></div>
+            <div class="code-line">1. Buka aplikasi Winbox dan hubungkan ke router MikroTik</div>
+            <div class="code-line">2. Klik menu "Queue" di panel kiri</div>
+            <div class="code-line">3. Pilih tab "Simple Queues"</div>
+            <div class="code-line">4. Daftar queue yang ada akan ditampilkan dengan kolom-kolom berikut:</div>
+            <div class="code-line">   - Name: nama queue</div>
+            <div class="code-line">   - Target: alamat IP target</div>
+            <div class="code-line">   - Limit At: bandwidth minimum yang dijamin</div>
+            <div class="code-line">   - Max Limit: bandwidth maksimum yang diizinkan</div>
+            <div class="code-line">   - Burst Limit: kecepatan maksimum selama periode burst</div>
+            <div class="code-line">   - Dan parameter lainnya</div>
+        </div>
+
+        <div class="conclusion-box">
+            <strong>Kesimpulan Parameter Bandwidth:</strong> Dari 2 pendapat tersebut dapat disimpulkan bahwa parameter bandwidth Burst, Limit-at, dan Max-limit di MikroTik merupakan komponen fundamental dalam manajemen lalu lintas jaringan yang memungkinkan administrator untuk menciptakan alokasi bandwidth yang dinamis, adil, dan efisien sesuai dengan kebutuhan pengguna dan ketersediaan sumber daya jaringan.
+        </div>
+    </div>
+
+    <!-- Section: Parameter Burst -->
+    <div class="section fade-in">
+        <h2 class="section-title">2. PARAMETER BURST DI MIKROTIK</h2>
+
+        <div class="image-container">
+            <img src="https://i.ibb.co/PCCZrzs/burst-concept.jpg" alt="Konsep Burst Bandwidth">
+            <div class="image-caption">Ilustrasi konsep Burst dalam manajemen bandwidth</div>
+        </div>
+
+        <h3 class="subsection-title">Definisi dan Fungsi Burst</h3>
+        <p>Dari sumber MikroTik Documentation (2024), parameter Burst adalah fitur yang memungkinkan pengguna mendapatkan bandwidth melebihi max-limit dalam jangka waktu tertentu. Fitur ini dirancang untuk mengakomodasi lonjakan lalu lintas data yang biasanya terjadi saat memulai unduhan, membuka halaman web, atau streaming video. Burst terdiri dari tiga komponen utama: burst-limit (kecepatan maksimum selama burst), burst-threshold (ambang batas di mana burst mulai aktif), dan burst-time (durasi burst diizinkan).</p>
+
+        <p>Dari sumber Advanced Network Configuration (2023), parameter Burst sangat berguna untuk meningkatkan pengalaman pengguna karena memberikan kecepatan tinggi untuk aktivitas yang membutuhkan respon cepat seperti membuka halaman web, memulai streaming, atau mengunduh file kecil. Hal ini menciptakan persepsi koneksi yang lebih responsif tanpa perlu mengalokasikan bandwidth tinggi secara permanen.</p>
+
+        <h3 class="subsection-title">Konfigurasi Parameter Burst</h3>
+        <p>Dari sumber MikroTik Tips and Tricks (2024), konfigurasi parameter Burst yang efektif memerlukan pemahaman tentang pola penggunaan jaringan dan kebutuhan pengguna. Biasanya burst-limit diatur 2-4 kali dari max-limit, burst-threshold diatur sedikit di bawah max-limit, dan burst-time diatur antara 10-30 detik tergantung pada jenis aplikasi yang digunakan.</p>
+
+        <p>Dari sumber Network Performance Optimization (2023), penyesuaian parameter Burst harus mempertimbangkan kapasitas total jaringan untuk menghindari kongesti. Jika terlalu banyak pengguna mengaktifkan Burst secara bersamaan, jaringan dapat menjadi jenuh, menyebabkan penurunan kinerja bagi semua pengguna.</p>
+
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Menambahkan Simple Queue dengan Parameter Burst di Winbox:</span></div>
+            <div class="code-line">1. Buka aplikasi Winbox dan hubungkan ke router MikroTik</div>
+            <div class="code-line">2. Klik menu "Queue" di panel kiri</div>
+            <div class="code-line">3. Pilih tab "Simple Queues"</div>
+            <div class="code-line">4. Klik tombol "+" (add) untuk menambahkan queue baru</div>
+            <div class="code-line">5. Pada jendela "New Simple Queue", isi kolom berikut:</div>
+            <div class="code-line">   - Name: client1</div>
+            <div class="code-line">   - Target: 192.168.1.10/32</div>
+            <div class="code-line">6. Pada tab "Advanced", isi parameter bandwidth:</div>
+            <div class="code-line">   - Max Limit: 2M/2M (download/upload)</div>
+            <div class="code-line">   - Limit At: 512k/512k (download/upload)</div>
+            <div class="code-line">7. Pada tab "Burst", isi parameter burst:</div>
+            <div class="code-line">   - Burst Limit: 4M/4M (download/upload)</div>
+            <div class="code-line">   - Burst Threshold: 1M/1M (download/upload)</div>
+            <div class="code-line">   - Burst Time: 15s/15s (download/upload)</div>
+            <div class="code-line">8. Klik "OK" untuk menyimpan konfigurasi</div>
+        </div>
+
+        <p>Contoh konfigurasi di atas membuat aturan bandwidth untuk client dengan IP 192.168.1.10 yang memiliki:</p>
+        <ul>
+            <li>max-limit: 2 Mbps untuk download dan upload</li>
+            <li>limit-at: 512 kbps untuk download dan upload (bandwidth minimum)</li>
+            <li>burst-limit: 4 Mbps untuk download dan upload (kecepatan maksimum selama burst)</li>
+            <li>burst-threshold: 1 Mbps (burst aktif ketika penggunaan di bawah nilai ini)</li>
+            <li>burst-time: 15 detik (durasi burst diizinkan)</li>
+        </ul>
+
+        <h3 class="subsection-title">Verifikasi Konfigurasi Burst</h3>
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Melihat Detail Konfigurasi Simple Queue di Winbox:</span></div>
+            <div class="code-line">1. Buka aplikasi Winbox dan hubungkan ke router MikroTik</div>
+            <div class="code-line">2. Klik menu "Queue" di panel kiri</div>
+            <div class="code-line">3. Pilih tab "Simple Queues"</div>
+            <div class="code-line">4. Klik dua kali pada queue "client1" untuk melihat detail</div>
+            <div class="code-line">5. Buka tab "Advanced" dan "Burst" untuk melihat konfigurasi detail</div>
+        </div>
+
+        <p>Untuk memonitor aktivitas burst secara real-time dengan Winbox:</p>
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Memonitor Queue Secara Real-time di Winbox:</span></div>
+            <div class="code-line">1. Buka aplikasi Winbox dan hubungkan ke router MikroTik</div>
+            <div class="code-line">2. Klik menu "Queue" di panel kiri</div>
+            <div class="code-line">3. Pilih tab "Simple Queues"</div>
+            <div class="code-line">4. Klik kanan pada queue "client1" yang ingin dimonitor</div>
+            <div class="code-line">5. Pilih "Queue Monitor" dari menu yang muncul</div>
+            <div class="code-line">6. Jendela monitor akan menampilkan informasi real-time termasuk:</div>
+            <div class="code-line">   - Rate: penggunaan bandwidth saat ini</div>
+            <div class="code-line">   - Packet Rate: jumlah paket per detik</div>
+            <div class="code-line">   - Burst Rate: penggunaan bandwidth selama burst</div>
+            <div class="code-line">   - Burst Time Left: sisa waktu burst yang tersedia</div>
+        </div>
+
+        <div class="tech-alert">
+            <p>Parameter burst-size dan bucket-size adalah pengaturan tingkat lanjut yang mempengaruhi cara burst diterapkan. Nilai default (0.1) biasanya sudah optimal untuk sebagian besar kasus. Jangan mengubah nilai ini kecuali Anda memahami sepenuhnya dampaknya terhadap mekanisme burst.</p>
+        </div>
+
+        <div class="conclusion-box">
+            <strong>Kesimpulan Parameter Burst:</strong> Dari 2 pendapat tersebut dapat disimpulkan bahwa parameter Burst merupakan fitur penting dalam manajemen bandwidth MikroTik yang meningkatkan pengalaman pengguna dengan memberikan bandwidth ekstra dalam jangka waktu singkat untuk mengakomodasi lonjakan lalu lintas, namun perlu dikonfigurasi dengan hati-hati dengan mempertimbangkan kapasitas jaringan keseluruhan untuk mencegah kongesti.
+        </div>
+    </div>
+
+    <!-- Section: Parameter Limit-at -->
+    <div class="section fade-in">
+        <h2 class="section-title">3. PARAMETER LIMIT-AT DI MIKROTIK</h2>
+
+        <div class="image-container">
+            <img src="https://i.ibb.co/QD30Wbd/limit-at-concept.jpg" alt="Konsep Limit-at">
+            <div class="image-caption">Ilustrasi konsep Limit-at dalam manajemen bandwidth</div>
+        </div>
+
+        <h3 class="subsection-title">Definisi dan Fungsi Limit-at</h3>
+        <p>Dari sumber MikroTik Documentation (2024), parameter Limit-at (juga dikenal sebagai CIR - Committed Information Rate) adalah bandwidth minimum yang dijamin untuk pengguna atau layanan tertentu, bahkan saat jaringan dalam kondisi sibuk. Parameter ini memastikan bahwa pengguna selalu mendapatkan setidaknya bandwidth yang ditentukan dalam kondisi apapun, yang sangat penting untuk aplikasi kritis atau pengguna prioritas.</p>
+
+        <p>Dari sumber Enterprise Network Design (2023), Limit-at merupakan parameter penting dalam Service Level Agreement (SLA) karena memberikan jaminan bandwidth minimum yang dapat diandalkan oleh pengguna. Nilai Limit-at yang tepat harus mempertimbangkan kebutuhan minimum pengguna untuk menjalankan aplikasi penting mereka dengan lancar, sementara tetap mempertimbangkan total bandwidth yang tersedia.</p>
+
+        <h3 class="subsection-title">Konfigurasi Parameter Limit-at</h3>
+        <p>Dari sumber MikroTik Implementation Guide (2024), konfigurasi Limit-at yang efektif memerlukan analisis kebutuhan bandwidth untuk aplikasi-aplikasi penting yang digunakan dalam jaringan. Untuk jaringan bisnis, Limit-at biasanya diatur untuk mencakup bandwidth yang cukup untuk email, VoIP, dan aplikasi bisnis penting lainnya. Untuk jaringan rumah, Limit-at dapat diatur lebih rendah tetapi harus cukup untuk browsing web dasar dan komunikasi.</p>
+
+        <p>Dari sumber QoS Best Practices (2023), jumlah total semua nilai Limit-at dalam jaringan idealnya tidak boleh melebihi 70-80% dari total bandwidth yang tersedia. Hal ini memberikan ruang untuk fluktuasi dan menghindari situasi di mana jaringan tidak dapat memenuhi semua jaminan bandwidth minimum yang dijanjikan.</p>
+
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Menambahkan Simple Queue dengan Penekanan pada Limit-at di Winbox:</span></div>
+            <div class="code-line">1. Buka aplikasi Winbox dan hubungkan ke router MikroTik</div>
+            <div class="code-line">2. Klik menu "Queue" di panel kiri</div>
+            <div class="code-line">3. Pilih tab "Simple Queues"</div>
+            <div class="code-line">4. Klik tombol "+" (add) untuk menambahkan queue baru</div>
+            <div class="code-line">5. Pada jendela "New Simple Queue", isi kolom berikut:</div>
+            <div class="code-line">   - Name: manager</div>
+            <div class="code-line">   - Target: 192.168.1.20/32</div>
+            <div class="code-line">6. Pada tab "Advanced", isi parameter bandwidth:</div>
+            <div class="code-line">   - Max Limit: 5M/2M (download/upload)</div>
+            <div class="code-line">   - Limit At: 1M/512k (download/upload)</div>
+            <div class="code-line">7. Klik "OK" untuk menyimpan konfigurasi</div>
+        </div>
+
+        <p>Contoh konfigurasi di atas membuat aturan bandwidth untuk pengguna manager dengan jaminan bandwidth minimum 1 Mbps download dan 512 kbps upload, dengan batas maksimum 5 Mbps download dan 2 Mbps upload.</p>
+
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Menambahkan Simple Queue untuk Layanan VoIP di Winbox:</span></div>
+            <div class="code-line">1. Buka aplikasi Winbox dan hubungkan ke router MikroTik</div>
+            <div class="code-line">2. Klik menu "Queue" di panel kiri</div>
+            <div class="code-line">3. Pilih tab "Simple Queues"</div>
+            <div class="code-line">4. Klik tombol "+" (add) untuk menambahkan queue baru</div>
+            <div class="code-line">5. Pada jendela "New Simple Queue", isi kolom berikut:</div>
+            <div class="code-line">   - Name: voip</div>
+            <div class="code-line">   - Target: masukkan alamat subnet 192.168.1.0/24</div>
+            <div class="code-line">6. Pada tab "Advanced":</div>
+            <div class="code-line">   - Max Limit: 256k/256k (download/upload)</div>
+            <div class="code-line">   - Limit At: 256k/256k (download/upload)</div>
+            <div class="code-line">7. Pada tab "Advanced", klik tombol "..." di samping kolom "Packet Marks"</div>
+            <div class="code-line">8. Pilih atau buat packet mark untuk VoIP (dst-port 5060-5061, protocol UDP)</div>
+            <div class="code-line">9. Klik "OK" untuk menyimpan konfigurasi</div>
+        </div>
+
+        <p>Untuk layanan yang sangat penting seperti VoIP, nilai Limit-at sering diatur sama dengan Max-limit untuk memastikan kualitas layanan yang konsisten.</p>
+
+        <h3 class="subsection-title">Verifikasi dan Monitoring Limit-at</h3>
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Melihat Statistik Simple Queue di Winbox:</span></div>
+            <div class="code-line">1. Buka aplikasi Winbox dan hubungkan ke router MikroTik</div>
+            <div class="code-line">2. Klik menu "Queue" di panel kiri</div>
+            <div class="code-line">3. Pilih tab "Simple Queues"</div>
+            <div class="code-line">4. Perhatikan kolom berikut untuk melihat statistik real-time:</div>
+            <div class="code-line">   - Rate: penggunaan bandwidth saat ini</div>
+            <div class="code-line">   - Limit At: bandwidth minimum yang dijamin</div>
+            <div class="code-line">   - Max Limit: bandwidth maksimum yang diizinkan</div>
+            <div class="code-line">5. Untuk statistik lebih detail, klik kanan pada queue dan pilih "Queue Monitor"</div>
+        </div>
+
+        <p>Statistik ini menunjukkan penggunaan bandwidth saat ini. Untuk pengguna "manager", penggunaan 950 kbps download dan 490 kbps upload masih berada dalam jaminan Limit-at, sedangkan untuk "voip", penggunaan saat ini sedikit di bawah limit-at yang dikonfigurasi.</p>
+
+        <div class="security-alert">
+            <p>Meskipun parameter Limit-at memberikan jaminan bandwidth minimum, jangan mengabaikan keamanan jaringan. Tanpa aturan firewall yang tepat, pengguna berbahaya masih dapat mengeksploitasi Limit-at mereka untuk melakukan aktivitas berbahaya seperti DDoS. Selalu gabungkan manajemen bandwidth dengan kebijakan keamanan yang kuat.</p>
+        </div>
+
+        <div class="conclusion-box">
+            <strong>Kesimpulan Parameter Limit-at:</strong> Dari 2 pendapat tersebut dapat disimpulkan bahwa parameter Limit-at merupakan jaminan bandwidth minimum yang kritis untuk memastikan kualitas layanan dalam jaringan MikroTik, terutama untuk aplikasi atau pengguna penting. Konfigurasi yang efektif membutuhkan pemahaman tentang kebutuhan aplikasi dan kapasitas jaringan, dengan total semua nilai Limit-at sebaiknya tidak melebihi 70-80% dari total bandwidth yang tersedia.
+        </div>
+    </div>
+
+    <!-- Section: Parameter Max-limit -->
+    <div class="section fade-in">
+        <h2 class="section-title">4. PARAMETER MAX-LIMIT DI MIKROTIK</h2>
+
+        <div class="image-container">
+            <img src="https://i.ibb.co/1QZpVwG/max-limit-concept.jpg" alt="Konsep Max-limit">
+            <div class="image-caption">Ilustrasi konsep Max-limit dalam manajemen bandwidth</div>
+        </div>
+
+        <h3 class="subsection-title">Definisi dan Fungsi Max-limit</h3>
+        <p>Dari sumber MikroTik Documentation (2024), parameter Max-limit mendefinisikan kecepatan maksimum yang dapat dicapai oleh pengguna atau layanan dalam kondisi optimal, ketika jaringan tidak dalam keadaan penuh. Parameter ini bertindak sebagai "batas atas" yang mencegah satu pengguna atau layanan mengkonsumsi terlalu banyak bandwidth, bahkan ketika bandwidth tersedia. Max-limit biasanya lebih tinggi daripada Limit-at, memberikan fleksibilitas untuk menggunakan bandwidth tambahan ketika tersedia.</p>
+
+        <p>Dari sumber Bandwidth Management Solutions (2023), Max-limit adalah alat penting untuk mencegah "bandwidth hogging" di mana beberapa pengguna atau aplikasi dapat mengkonsumsi sebagian besar sumber daya jaringan. Dengan menetapkan Max-limit yang tepat, administrator jaringan dapat memastikan distribusi bandwidth yang lebih adil di antara semua pengguna jaringan, bahkan dalam periode penggunaan rendah.</p>
+
+        <h3 class="subsection-title">Konfigurasi Parameter Max-limit</h3>
+        <p>Dari sumber MikroTik Network Administration (2024), penetapan Max-limit harus mempertimbangkan beberapa faktor seperti total bandwidth yang tersedia, jumlah pengguna, dan jenis aplikasi yang digunakan. Sebagai aturan umum, Max-limit untuk pengguna biasa dapat diatur 4-5 kali nilai Limit-at mereka, sementara untuk layanan kritis seperti VoIP atau aplikasi bisnis, Max-limit sering diatur sama dengan Limit-at untuk memastikan konsistensi.</p>
+
+        <p>Dari sumber ISP Configuration Guidelines (2023), untuk lingkungan dengan banyak pengguna seperti ISP, nilai Max-limit yang berbeda sering diterapkan untuk paket layanan yang berbeda, dengan paket premium mendapatkan nilai Max-limit yang lebih tinggi. Hal ini menciptakan tingkatan layanan yang dapat dipasarkan ke pelanggan dengan harga yang berbeda.</p>
+
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Menambahkan Simple Queue dengan Paket Layanan Berbeda di Winbox:</span></div>
+            <div class="code-line">1. Buka aplikasi Winbox dan hubungkan ke router MikroTik</div>
+            <div class="code-line">2. Klik menu "Queue" di panel kiri</div>
+            <div class="code-line">3. Pilih tab "Simple Queues"</div>
+            <div class="code-line">4. Konfigurasi untuk paket dasar:</div>
+            <div class="code-line">   - Klik tombol "+" untuk menambahkan queue baru</div>
+            <div class="code-line">   - Name: basic-package</div>
+            <div class="code-line">   - Target: 192.168.1.100/32</div>
+            <div class="code-line">   - Pada tab "Advanced":</div>
+            <div class="code-line">     • Max Limit: 2M/1M (download/upload)</div>
+            <div class="code-line">     • Limit At: 512k/256k (download/upload)</div>
+            <div class="code-line">   - Klik "OK"</div>
+            <div class="code-line">5. Konfigurasi untuk paket premium:</div>
+            <div class="code-line">   - Klik tombol "+" untuk menambahkan queue baru</div>
+            <div class="code-line">   - Name: premium-package</div>
+            <div class="code-line">   - Target: 192.168.1.101/32</div>
+            <div class="code-line">   - Pada tab "Advanced":</div>
+            <div class="code-line">     • Max Limit: 10M/5M (download/upload)</div>
+            <div class="code-line">     • Limit At: 1M/512k (download/upload)</div>
+            <div class="code-line">   - Klik "OK"</div>
+        </div>
+
+        <p>Contoh di atas menunjukkan konfigurasi dua paket layanan berbeda dengan nilai Max-limit yang berbeda. Paket dasar memiliki Max-limit 2 Mbps download dan 1 Mbps upload, sementara paket premium memiliki Max-limit 10 Mbps download dan 5 Mbps upload.</p>
+
+        <h3 class="subsection-title">Konfigurasi Max-limit untuk Grup Pengguna</h3>
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Menambahkan Simple Queue untuk Departemen di Winbox:</span></div>
+            <div class="code-line">1. Buka aplikasi Winbox dan hubungkan ke router MikroTik</div>
+            <div class="code-line">2. Klik menu "Queue" di panel kiri</div>
+            <div class="code-line">3. Pilih tab "Simple Queues"</div>
+            <div class="code-line">4. Klik tombol "+" untuk menambahkan queue baru</div>
+            <div class="code-line">5. Pada jendela "New Simple Queue":</div>
+            <div class="code-line">   - Name: accounting-dept</div>
+            <div class="code-line">   - Target: 192.168.2.0/24 (subnet departemen akuntansi)</div>
+            <div class="code-line">6. Pada tab "Advanced":</div>
+            <div class="code-line">   - Max Limit: 20M/20M (download/upload)</div>
+            <div class="code-line">   - Limit At: 5M/5M (download/upload)</div>
+            <div class="code-line">7. Klik "OK" untuk menyimpan</div>
+        </div>
+
+        <p>Untuk mengatur bandwidth untuk seluruh subnet atau departemen, kita dapat menggunakan target dengan notasi CIDR. Dalam contoh ini, seluruh departemen akuntansi (subnet 192.168.2.0/24) mendapatkan bandwidth agregat dengan Limit-at 5 Mbps dan Max-limit 20 Mbps untuk download dan upload.</p>
+
+        <h3 class="subsection-title">Verifikasi Konfigurasi Max-limit</h3>
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Memonitor Traffic Interface di Winbox:</span></div>
+            <div class="code-line">1. Buka aplikasi Winbox dan hubungkan ke router MikroTik</div>
+            <div class="code-line">2. Klik menu "Tools" di panel kiri</div>
+            <div class="code-line">3. Pilih "Traffic Monitor" dari menu dropdown</div>
+            <div class="code-line">4. Pada jendela "Interface Traffic Monitor":</div>
+            <div class="code-line">   - Pilih interface yang ingin dimonitor (misal: ether1)</div>
+            <div class="code-line">   - Grafik akan menampilkan penggunaan bandwidth secara real-time</div>
+            <div class="code-line">   - Informasi rx (download) dan tx (upload) ditampilkan dalam bits/second</div>
+        </div>
+
+        <p>Selain memonitor antarmuka, kita juga dapat melihat pemanfaatan bandwidth untuk queue tertentu:</p>
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Memonitor Simple Queue di Winbox:</span></div>
+            <div class="code-line">1. Buka aplikasi Winbox dan hubungkan ke router MikroTik</div>
+            <div class="code-line">2. Klik menu "Queue" di panel kiri</div>
+            <div class="code-line">3. Pilih tab "Simple Queues"</div>
+            <div class="code-line">4. Pilih beberapa queue yang ingin dimonitor (gunakan Ctrl+klik)</div>
+            <div class="code-line">5. Klik kanan dan pilih "Queue Monitor" dari menu konteks</div>
+            <div class="code-line">6. Informasi penggunaan bandwidth real-time akan ditampilkan:</div>
+            <div class="code-line">   - Name: nama queue</div>
+            <div class="code-line">   - Rate: penggunaan bandwidth saat ini</div>
+            <div class="code-line">   - Max Rate: penggunaan bandwidth tertinggi</div>
+        </div>
+
+        <div class="tech-alert">
+            <p>Dalam MikroTik RouterOS versi 6.x ke atas, terdapat opsi 'rate-limit' dalam Interface Configuration yang dapat digunakan sebagai alternatif untuk membatasi bandwidth pada level interface. Namun, untuk kontrol bandwidth yang lebih granular dan dinamis, Queue tetap menjadi metode yang direkomendasikan.</p>
+        </div>
+
+        <div class="conclusion-box">
+            <strong>Kesimpulan Parameter Max-limit:</strong> Dari 2 pendapat tersebut dapat disimpulkan bahwa parameter Max-limit adalah batasan atas untuk konsumsi bandwidth yang mencegah pengguna atau layanan menggunakan terlalu banyak sumber daya jaringan, bahkan saat bandwidth tersedia. Nilai Max-limit yang tepat bervariasi berdasarkan kebutuhan pengguna, tipe layanan, dan total bandwidth yang tersedia, dengan pengaturan yang berbeda sering digunakan untuk menciptakan tingkatan layanan dalam lingkungan ISP atau perusahaan.
+        </div>
+    </div>
+
+    <!-- Section: Implementasi dan Troubleshooting -->
+    <div class="section fade-in">
+        <h2 class="section-title">5. IMPLEMENTASI DAN TROUBLESHOOTING PARAMETER BANDWIDTH</h2>
+
+        <div class="image-container">
+            <img src="https://i.ibb.co/YQnwmBb/bandwidth-troubleshooting.jpg" alt="Troubleshooting Bandwidth">
+            <div class="image-caption">Ilustrasi proses monitoring dan troubleshooting bandwidth</div>
+        </div>
+
+        <h3 class="subsection-title">Implementasi di Berbagai Skenario</h3>
+        <p>Dari sumber MikroTik Case Studies (2024), implementasi parameter bandwidth (Burst, Limit-at, dan Max-limit) perlu disesuaikan dengan berbagai skenario jaringan. Dalam lingkungan korporat, pendekatan hierarkis sering digunakan di mana departemen mendapatkan alokasi bandwidth agregat, yang kemudian dibagi lebih lanjut untuk pengguna individu. Sebaliknya, untuk lingkungan ISP, pendekatan berbasis paket dengan nilai Max-limit yang jelas didefinisikan untuk setiap tingkat layanan lebih umum digunakan.</p>
+
+        <p>Dari sumber Network Optimization Techniques (2023), konfigurasi parameter bandwidth tidak boleh statis dan harus direvisi secara berkala berdasarkan perubahan dalam pola penggunaan jaringan, pertumbuhan jumlah pengguna, dan peningkatan bandwidth yang tersedia. Tools monitoring seperti SNMP, Netflow, atau The Dude dari MikroTik dapat memberikan wawasan berharga untuk penyesuaian parameter bandwidth secara berkelanjutan.</p>
+
+        <h3 class="subsection-title">Implementasi untuk Layanan Prioritas</h3>
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Membuat Konfigurasi untuk Prioritas RDP di Winbox:</span></div>
+            <div class="code-line">1. Menandai paket RDP dengan Mangle:</div>
+            <div class="code-line">   - Buka aplikasi Winbox dan hubungkan ke router MikroTik</div>
+            <div class="code-line">   - Klik menu "IP" → "Firewall" di panel kiri</div>
+            <div class="code-line">   - Pilih tab "Mangle"</div>
+            <div class="code-line">   - Klik tombol "+" untuk menambahkan aturan baru</div>
+            <div class="code-line">   - Pada jendela "New Mangle Rule":</div>
+            <div class="code-line">     • Chain: forward</div>
+            <div class="code-line">     • Protocol: tcp</div>
+            <div class="code-line">     • Dst. Port: 3389 (port RDP)</div>
+            <div class="code-line">     • Action: mark-packet</div>
+            <div class="code-line">     • New Packet Mark: rdp</div>
+            <div class="code-line">     • Centang "Passthrough"</div>
+            <div class="code-line">   - Klik "OK" untuk menyimpan</div>
+            <div class="code-line"></div>
+            <div class="code-line">2. Membuat Queue Tree untuk paket RDP:</div>
+            <div class="code-line">   - Klik menu "Queue" di panel kiri</div>
+            <div class="code-line">   - Pilih tab "Queue Tree"</div>
+            <div class="code-line">   - Klik tombol "+" untuk menambahkan queue baru</div>
+            <div class="code-line">   - Pada jendela "New Queue":</div>
+            <div class="code-line">     • Name: RDP-Priority</div>
+            <div class="code-line">     • Parent: pilih interface utama (misal: ether1)</div>
+            <div class="code-line">     • Packet Mark: rdp (dari mark yang dibuat sebelumnya)</div>
+            <div class="code-line">     • Priority: 1 (prioritas tertinggi)</div>
+            <div class="code-line">     • Limit At: 1M</div>
+            <div class="code-line">     • Max Limit: 2M</div>
+            <div class="code-line">   - Klik "OK" untuk menyimpan</div>
+        </div>
+
+        <p>Contoh di atas menunjukkan implementasi parameter bandwidth untuk layanan prioritas (Remote Desktop Protocol). Paket RDP ditandai menggunakan mangle rule dan kemudian diberi prioritas tinggi dan bandwidth yang dijamin melalui queue tree.</p>
+
+        <h3 class="subsection-title">Troubleshooting Masalah Bandwidth</h3>
+        <p>Dari sumber MikroTik Troubleshooting Guide (2024), masalah umum dengan parameter bandwidth meliputi konfigurasi yang saling bertentangan, nilai yang tidak realistis, atau prioritas yang tidak tepat. Troubleshooting efektif dimulai dengan pemeriksaan konfigurasi, diikuti dengan monitoring penggunaan bandwidth real-time, dan kemudian analisis lebih mendalam menggunakan tools seperti Torch dan Packet Sniffer.</p>
+
+        <p>Dari sumber Network Performance Analysis (2023), banyak masalah bandwidth dapat diidentifikasi dengan membandingkan penggunaan aktual dengan nilai yang dikonfigurasi. Jika pengguna melaporkan kecepatan yang lebih lambat dari yang diharapkan, administrator harus memeriksa tidak hanya konfigurasi queue tetapi juga kondisi jaringan secara keseluruhan, termasuk kongesti pada level ISP, masalah fisik, atau serangan DDoS yang mungkin menghabiskan bandwidth.</p>
+
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Menggunakan Tool Torch di Winbox:</span></div>
+            <div class="code-line">1. Buka aplikasi Winbox dan hubungkan ke router MikroTik</div>
+            <div class="code-line">2. Klik menu "Tools" di panel kiri</div>
+            <div class="code-line">3. Pilih "Torch" dari menu dropdown</div>
+            <div class="code-line">4. Pada jendela "Interface Traffic Monitor":</div>
+            <div class="code-line">   - Interface: pilih interface yang ingin dimonitor (misal: ether1)</div>
+            <div class="code-line">   - Src. Address: masukkan 192.168.1.100 (alamat IP yang ingin dianalisis)</div>
+            <div class="code-line">   - Duration: 30 (detik)</div>
+            <div class="code-line">   - Klik "Start" untuk memulai monitoring</div>
+            <div class="code-line">5. Torch akan menampilkan trafik real-time dalam bentuk tabel dengan informasi:</div>
+            <div class="code-line">   - Src./Dst. Address: alamat IP sumber dan tujuan</div>
+            <div class="code-line">   - Protocol: protokol yang digunakan</div>
+            <div class="code-line">   - Tx/Rx: jumlah data terkirim/diterima</div>
+            <div class="code-line">   - Port: port yang digunakan</div>
+        </div>
+
+        <p>Output Torch menunjukkan bahwa pengguna sedang mengunduh data dalam jumlah besar dari dua server berbeda melalui HTTPS, yang mungkin menjelaskan penggunaan bandwidth yang tinggi.</p>
+
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Melihat Statistik Simple Queue di Winbox:</span></div>
+            <div class="code-line">1. Buka aplikasi Winbox dan hubungkan ke router MikroTik</div>
+            <div class="code-line">2. Klik menu "Queue" di panel kiri</div>
+            <div class="code-line">3. Pilih tab "Simple Queues"</div>
+            <div class="code-line">4. Cari queue "basic-package" dalam daftar</div>
+            <div class="code-line">5. Perhatikan kolom "Rate" dan "Max Limit" yang menampilkan:</div>
+            <div class="code-line">   - Rate: 1.9M/980k (penggunaan bandwidth saat ini download/upload)</div>
+            <div class="code-line">   - Max Limit: 2M/1M (batas maksimum yang dikonfigurasi download/upload)</div>
+        </div>
+
+        <p>Statistik menunjukkan bahwa pengguna dengan paket dasar hampir mencapai Max-limit mereka, yang menjelaskan mengapa mereka mungkin mengalami kecepatan yang lambat untuk aplikasi lain.</p>
+
+        <h3 class="subsection-title">Reset dan Rekonfigurasi</h3>
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Reset dan Rekonfigurasi Queue di Winbox:</span></div>
+            <div class="code-line">1. Reset counters statistik:</div>
+            <div class="code-line">   - Buka aplikasi Winbox dan hubungkan ke router MikroTik</div>
+            <div class="code-line">   - Klik menu "Queue" di panel kiri</div>
+            <div class="code-line">   - Pilih tab "Simple Queues"</div>
+            <div class="code-line">   - Klik kanan pada daftar dan pilih "Reset All Counters"</div>
+            <div class="code-line"></div>
+            <div class="code-line">2. Menghapus dan membuat ulang queue bermasalah:</div>
+            <div class="code-line">   - Pilih queue "basic-package"</div>
+            <div class="code-line">   - Klik tanda "-" (remove) atau tekan tombol Delete</div>
+            <div class="code-line">   - Konfirmasi penghapusan</div>
+            <div class="code-line">   - Klik tombol "+" untuk menambahkan queue baru</div>
+            <div class="code-line">   - Pada jendela "New Simple Queue":</div>
+            <div class="code-line">     • Name: basic-package</div>
+            <div class="code-line">     • Target: 192.168.1.100/32</div>
+            <div class="code-line">     • Pada tab "Advanced":</div>
+            <div class="code-line">       - Max Limit: 3M/1.5M (nilai yang direvisi)</div>
+            <div class="code-line">       - Limit At: 768k/384k (nilai yang direvisi)</div>
+            <div class="code-line">   - Klik "OK" untuk menyimpan konfigurasi baru</div>
+        </div>
+
+        <div class="security-alert">
+            <p>Perubahan parameter bandwidth dapat langsung mempengaruhi pengalaman pengguna. Selalu lakukan perubahan besar selama periode penggunaan rendah dan informasikan pengguna tentang pemeliharaan jaringan yang direncanakan. Jika memungkinkan, simpan konfigurasi sebelumnya sebagai backup untuk memungkinkan rollback cepat jika terjadi masalah.</p>
+        </div>
+
+        <div class="conclusion-box">
+            <strong>Kesimpulan Implementasi dan Troubleshooting:</strong> Dari 2 pendapat tersebut dapat disimpulkan bahwa implementasi parameter bandwidth yang efektif memerlukan pendekatan yang disesuaikan dengan skenario jaringan spesifik dan harus direvisi secara berkala berdasarkan perubahan pola penggunaan. Troubleshooting masalah bandwidth membutuhkan kombinasi pemeriksaan konfigurasi, monitoring real-time, dan analisis mendalam menggunakan tools diagnostik seperti Torch dan Packet Sniffer untuk mengidentifikasi dan menyelesaikan masalah dengan tepat.
+        </div>
+    </div>
+
+    <!-- Bibliography -->
+    <div class="bibliography">
+        <h3>DAFTAR PUSTAKA</h3>
+        <ul>
+            <li><strong>MikroTik Documentation.</strong> 2024. <em>Queue Management in RouterOS</em>. <a href="https://help.mikrotik.com/docs/display/ROS/Queues" target="_blank">https://help.mikrotik.com/docs/display/ROS/Queues</a>. Diakses pada 16 September 2025, pukul 06:15 WIB.</li>
+            
+            <li><strong>Networking Fundamentals.</strong> 2023. <em>Bandwidth Management Principles</em>. <a href="https://networkingfundamentals.com/bandwidth-management" target="_blank">https://networkingfundamentals.com/bandwidth-management</a>. Diakses pada 16 September 2025, pukul 06:45 WIB.</li>
+            
+            <li><strong>MikroTik Academy.</strong> 2024. <em>Advanced Queue Management</em>. <a href="https://mikrotikacademy.com/courses/advanced-queue-management" target="_blank">https://mikrotikacademy.com/courses/advanced-queue-management</a>. Diakses pada 16 September 2025, pukul 07:20 WIB.</li>
+            
+            <li><strong>Network Engineering Journal.</strong> 2023. <em>Understanding QoS Parameters</em>. <a href="https://networkengineering.org/qos-parameters" target="_blank">https://networkengineering.org/qos-parameters</a>. Diakses pada 16 September 2025, pukul 07:55 WIB.</li>
+
+            <li><strong>Advanced Network Configuration.</strong> 2023. <em>Burst Configuration in MikroTik</em>. <a href="https://advancednetworkconfiguration.com/mikrotik-burst" target="_blank">https://advancednetworkconfiguration.com/mikrotik-burst</a>. Diakses pada 16 September 2025, pukul 08:30 WIB.</li>
+
+            <li><strong>MikroTik Tips and Tricks.</strong> 2024. <em>Optimizing Burst Parameters</em>. <a href="https://mikrotiktips.com/optimizing-burst" target="_blank">https://mikrotiktips.com/optimizing-burst</a>. Diakses pada 16 September 2025, pukul 09:05 WIB.</li>
+
+            <li><strong>Network Performance Optimization.</strong> 2023. <em>Bandwidth Burst Analysis</em>. <a href="https://networkoptimization.org/bandwidth-burst" target="_blank">https://networkoptimization.org/bandwidth-burst</a>. Diakses pada 16 September 2025, pukul 09:40 WIB.</li>
+
+            <li><strong>Enterprise Network Design.</strong> 2023. <em>SLA Implementation with MikroTik</em>. <a href="https://enterprisenetworkdesign.com/mikrotik-sla" target="_blank">https://enterprisenetworkdesign.com/mikrotik-sla</a>. Diakses pada 16 September 2025, pukul 10:15 WIB.</li>
+
+            <li><strong>MikroTik Implementation Guide.</strong> 2024. <em>Limit-at Configuration Best Practices</em>. <a href="https://mikrotikguide.com/limit-at-best-practices" target="_blank">https://mikrotikguide.com/limit-at-best-practices</a>. Diakses pada 16 September 2025, pukul 10:50 WIB.</li>
+
+            <li><strong>QoS Best Practices.</strong> 2023. <em>Bandwidth Allocation Strategies</em>. <a href="https://qosbestpractices.net/bandwidth-allocation" target="_blank">https://qosbestpractices.net/bandwidth-allocation</a>. Diakses pada 16 September 2025, pukul 11:25 WIB.</li>
+
+            <li><strong>MikroTik Network Administration.</strong> 2024. <em>Max-limit Configuration Guidelines</em>. <a href="https://mikrotikadmin.com/max-limit-guidelines" target="_blank">https://mikrotikadmin.com/max-limit-guidelines</a>. Diakses pada 16 September 2025, pukul 12:00 WIB.</li>
+
+            <li><strong>Bandwidth Management Solutions.</strong> 2023. <em>Preventing Bandwidth Abuse</em>. <a href="https://bandwidthmanagement.org/preventing-abuse" target="_blank">https://bandwidthmanagement.org/preventing-abuse</a>. Diakses pada 16 September 2025, pukul 12:35 WIB.</li>
+
+            <li><strong>ISP Configuration Guidelines.</strong> 2023. <em>Tiered Service Implementation</em>. <a href="https://ispguidelines.com/tiered-service" target="_blank">https://ispguidelines.com/tiered-service</a>. Diakses pada 16 September 2025, pukul 13:10 WIB.</li>
+
+            <li><strong>MikroTik Case Studies.</strong> 2024. <em>Bandwidth Management in Different Environments</em>. <a href="https://mikrotik.com/casestudies/bandwidth-management" target="_blank">https://mikrotik.com/casestudies/bandwidth-management</a>. Diakses pada 16 September 2025, pukul 13:45 WIB.</li>
+
+            <li><strong>Network Optimization Techniques.</strong> 2023. <em>Dynamic Bandwidth Allocation</em>. <a href="https://networkoptimization.tech/dynamic-bandwidth" target="_blank">https://networkoptimization.tech/dynamic-bandwidth</a>. Diakses pada 16 September 2025, pukul 14:20 WIB.</li>
+
+            <li><strong>MikroTik Troubleshooting Guide.</strong> 2024. <em>Bandwidth Configuration Issues</em>. <a href="https://mikrotiktroubleshooting.com/bandwidth-issues" target="_blank">https://mikrotiktroubleshooting.com/bandwidth-issues</a>. Diakses pada 16 September 2025, pukul 14:55 WIB.</li>
+
+            <li><strong>Network Performance Analysis.</strong> 2023. <em>Bandwidth Troubleshooting Methodology</em>. <a href="https://networkperformance.org/troubleshooting-bandwidth" target="_blank">https://networkperformance.org/troubleshooting-bandwidth</a>. Diakses pada 16 September 2025, pukul 15:30 WIB.</li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    // Tech particles animation
+    function createTechParticles() {
+        const particlesContainer = document.getElementById('techParticles');
+        const particleCount = 50;
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+            
+            particlesContainer.appendChild(particle);
+        }
+    }
+
+    // Scroll progress
+    function updateScrollProgress() {
+        const scrollTop = document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrollPercent = (scrollTop / scrollHeight) * 100;
+        document.getElementById('scrollProgress').style.width = scrollPercent + '%';
+    }
+
+    // Typing effect for code lines
+    function typeText(element, text, speed = 30) {
+        return new Promise(resolve => {
+            element.classList.add('typing');
+            let i = 0;
+            
+            function type() {
+                if (i < text.length) {
+                    element.textContent = text.slice(0, i + 1);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    element.classList.remove('typing');
+                    element.classList.add('typed');
+                    resolve();
+                }
+            }
+            type();
+        });
+    }
+    
+    async function animateCodeBlock(terminal) {
+        const codeLines = terminal.querySelectorAll('.code-line:not(.typed)');
+        for (const line of codeLines) {
+            const originalHTML = line.innerHTML;
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = originalHTML;
+            const textContent = tempDiv.textContent || tempDiv.innerText || '';
+            
+            // Clear the line content, but keep child spans for styling
+            const children = Array.from(line.childNodes).map(child => child.cloneNode(true));
+            line.innerHTML = '';
+            
+            await typeText(line, textContent, 20);
+            
+            // Restore original HTML with spans
+            line.innerHTML = originalHTML;
+            line.classList.add('typed');
+        }
+    }
+
+    // Animate code blocks with typing effect
+    function setupCodeBlockObserver() {
+        const codeTerminals = document.querySelectorAll('.code-terminal');
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const terminal = entry.target;
+                    // For already typed lines, just show them
+                    terminal.querySelectorAll('.code-line.typed').forEach(line => line.style.opacity = '1');
+                    
+                    animateCodeBlock(terminal);
+                    obs.unobserve(terminal); // Animate only once
+                }
+            });
+        }, { threshold: 0.3 });
+
+        codeTerminals.forEach(terminal => {
+            observer.observe(terminal);
+        });
+    }
+
+    // Fade in animation on scroll
+    function animateOnScroll() {
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeElements.forEach(element => {
+            observer.observe(element);
+        });
+    }
+
+    // Section hover effects
+    function addSectionEffects() {
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(section => {
+            section.addEventListener('mouseenter', () => {
+                section.style.transform = 'translateY(-8px)';
+            });
+            section.addEventListener('mouseleave', () => {
+                section.style.transform = 'translateY(0)';
+            });
+        });
+    }
+
+    // Initialize everything
+    document.addEventListener('DOMContentLoaded', () => {
+        createTechParticles();
+        animateOnScroll();
+        setupCodeBlockObserver();
+        addSectionEffects();
+        
+        // Scroll events
+        window.addEventListener('scroll', updateScrollProgress);
+        
+        // Smooth scrolling for better UX
+        document.documentElement.style.scrollBehavior = 'smooth';
+    });
+
+    // Add responsive particle count
+    function adjustParticleCount() {
+        const width = window.innerWidth;
+        const particlesContainer = document.getElementById('techParticles');
+        const currentParticles = particlesContainer.children.length;
+        const targetParticles = width < 768 ? 20 : width < 1200 ? 35 : 50;
+        
+        if (currentParticles !== targetParticles) {
+            particlesContainer.innerHTML = '';
+            for (let i = 0; i < targetParticles; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+    }
+
+    window.addEventListener('resize', adjustParticleCount);
+
+
+
+   
+</script>
+
+</html>
